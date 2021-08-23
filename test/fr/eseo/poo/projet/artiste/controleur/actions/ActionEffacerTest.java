@@ -1,0 +1,41 @@
+package fr.eseo.poo.projet.artiste.controleur.actions;
+
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
+import fr.eseo.poo.projet.artiste.controleur.outils.formes.OutilLigne;
+import fr.eseo.poo.projet.artiste.vue.ihm.PanneauBarreOutils;
+import fr.eseo.poo.projet.artiste.vue.ihm.PanneauDessin;
+
+public class ActionEffacerTest {
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				new ActionEffacerTest();
+			}
+		});
+	}
+
+	public ActionEffacerTest() {
+		JFrame frame = new JFrame("ActionEffacerTest");
+
+		PanneauDessin panneauDessin = new PanneauDessin();
+		PanneauBarreOutils panneauOutils = new PanneauBarreOutils(panneauDessin);
+
+		frame.setLayout(new BorderLayout());
+		frame.add(panneauDessin);
+		frame.add(panneauOutils, BorderLayout.EAST);
+		
+		frame.setSize(panneauDessin.getSize());
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		
+		OutilLigne outilLigne = new OutilLigne(panneauOutils);
+
+		outilLigne.setPanneauDessin(panneauDessin);
+		panneauDessin.associerOutil(outilLigne);
+	}
+}
